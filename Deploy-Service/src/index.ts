@@ -1,4 +1,5 @@
 import { commandOptions, createClient } from "redis";
+import { downloadS3Folder } from "./aws";
 const subscriber = createClient();
 subscriber.connect();
 
@@ -9,7 +10,11 @@ async function main(){
         }),
         'build-queue',
         0);
-        console.log(response)
+        
+        //@ts-ignore
+        const id = res.element
+
+        await downloadS3Folder(`output/${id}`)
     }
 }
 
