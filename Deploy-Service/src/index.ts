@@ -10,7 +10,7 @@ publisher.connect();
 
 async function main(){
     while(1){
-        const response = await subscriber.brPop(commandOptions({
+        const res = await subscriber.brPop(commandOptions({
             isolated: true
         }),
         'build-queue',
